@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Laurin Mungai — Engineer & Operations Leader</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=Syne:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0d0d0d;
+    --paper: #f5f2ec;
+    --steel: #2a2d35;
+    --rust: #c8441a;
+    --mid: #6b6b6b;
+    --line: rgba(0,0,0,0.12);
+    --accent-bg: #1c1e24;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Syne', sans-serif; background: var(--paper); color: var(--ink); overflow-x: hidden; }
+
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.25rem 4rem; background: var(--paper); border-bottom: 1px solid var(--line);
+  }
+  .nav-logo { font-size: 13px; font-family: 'DM Mono', monospace; letter-spacing: 0.12em; color: var(--mid); }
+  .nav-links { display: flex; gap: 2.5rem; }
+  .nav-links a { font-size: 13px; letter-spacing: 0.08em; text-decoration: none; color: var(--ink); opacity: 0.6; transition: opacity 0.2s; }
+  .nav-links a:hover { opacity: 1; }
+  .nav-cta { font-size: 13px; letter-spacing: 0.08em; background: var(--ink); color: var(--paper); padding: 0.5rem 1.25rem; text-decoration: none; transition: background 0.2s; }
+  .nav-cta:hover { background: var(--rust); }
+
+  #hero { min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; padding-top: 80px; }
+  .hero-left { padding: 8rem 4rem 4rem; display: flex; flex-direction: column; justify-content: center; border-right: 1px solid var(--line); }
+  .hero-tag { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.2em; color: var(--rust); text-transform: uppercase; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.75rem; }
+  .hero-tag::before { content: ''; display: block; width: 2rem; height: 1px; background: var(--rust); }
+  h1 { font-family: 'DM Serif Display', serif; font-size: clamp(3.5rem, 6vw, 5.5rem); line-height: 1.0; letter-spacing: -0.02em; margin-bottom: 2rem; }
+  h1 em { font-style: italic; color: var(--mid); }
+  .hero-sub { font-size: 15px; line-height: 1.7; color: var(--mid); max-width: 420px; margin-bottom: 3rem; }
+  .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-primary { background: var(--ink); color: var(--paper); padding: 0.85rem 2rem; font-family: 'Syne', sans-serif; font-size: 13px; letter-spacing: 0.08em; text-decoration: none; transition: background 0.2s; display: inline-block; }
+  .btn-primary:hover { background: var(--rust); }
+  .btn-outline { border: 1px solid var(--ink); color: var(--ink); padding: 0.85rem 2rem; font-family: 'Syne', sans-serif; font-size: 13px; letter-spacing: 0.08em; text-decoration: none; transition: all 0.2s; display: inline-block; }
+  .btn-outline:hover { background: var(--ink); color: var(--paper); }
+
+  .hero-right { background: var(--accent-bg); display: flex; flex-direction: column; justify-content: flex-end; padding: 4rem; position: relative; overflow: hidden; }
+  .hero-right::before { content: 'LM'; position: absolute; top: -40px; right: -20px; font-family: 'DM Serif Display', serif; font-size: 28rem; line-height: 1; color: rgba(255,255,255,0.15); pointer-events: none; }
+  .hero-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: rgba(255,255,255,0.08); }
+  .stat { background: var(--accent-bg); padding: 2rem 1.5rem; }
+  .stat-num { font-family: 'DM Serif Display', serif; font-size: 3rem; color: #fff; display: block; margin-bottom: 0.25rem; }
+  .stat-label { font-size: 11px; letter-spacing: 0.15em; color: rgba(255,255,255,0.4); text-transform: uppercase; }
+  .hero-location { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.15em; color: rgba(255,255,255,0.35); margin-top: 2rem; text-transform: uppercase; }
+
+  section { padding: 8rem 4rem; }
+  .section-label { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.2em; color: var(--rust); text-transform: uppercase; margin-bottom: 3rem; display: flex; align-items: center; gap: 0.75rem; }
+  .section-label::before { content: ''; display: block; width: 2rem; height: 1px; background: var(--rust); }
+  h2 { font-family: 'DM Serif Display', serif; font-size: clamp(2.5rem, 4vw, 3.5rem); line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 1.5rem; }
+
+  #about { border-top: 1px solid var(--line); }
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: start; }
+  .about-body { font-size: 16px; line-height: 1.75; color: var(--mid); }
+  .about-body p + p { margin-top: 1.25rem; }
+  .about-body strong { color: var(--ink); font-weight: 700; }
+  .pillars { margin-top: 3rem; display: flex; flex-direction: column; gap: 0; border: 1px solid var(--line); }
+  .pillar { padding: 1.5rem 2rem; border-bottom: 1px solid var(--line); display: grid; grid-template-columns: auto 1fr; gap: 1.5rem; align-items: start; }
+  .pillar:last-child { border-bottom: none; }
+  .pillar-num { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--rust); letter-spacing: 0.1em; padding-top: 2px; }
+  .pillar-title { font-size: 15px; font-weight: 700; margin-bottom: 0.35rem; }
+  .pillar-desc { font-size: 14px; color: var(--mid); line-height: 1.6; }
+
+  #projects { background: var(--ink); color: var(--paper); border-top: 1px solid rgba(255,255,255,0.08); }
+  #projects .section-label { color: #c8a090; }
+  #projects .section-label::before { background: #c8a090; }
+  #projects h2 { color: var(--paper); }
+  .projects-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: rgba(255,255,255,0.08); margin-top: 4rem; }
+  .project-card { background: var(--ink); padding: 2.5rem; transition: background 0.2s; }
+  .project-card:hover { background: #1c1e24; }
+  .project-card.featured { grid-column: span 2; }
+  .project-year { font-family: 'DM Mono', monospace; font-size: 11px; color: rgba(255,255,255,0.3); letter-spacing: 0.15em; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
+  .project-tag { display: inline-block; font-size: 10px; letter-spacing: 0.15em; padding: 0.25rem 0.65rem; background: rgba(200,68,26,0.2); color: #f0a080; }
+  .project-title { font-family: 'DM Serif Display', serif; font-size: clamp(1.5rem, 2.5vw, 2.25rem); line-height: 1.1; margin-bottom: 0.75rem; color: var(--paper); }
+  .project-org { font-size: 12px; letter-spacing: 0.1em; color: rgba(255,255,255,0.4); text-transform: uppercase; margin-bottom: 1.5rem; }
+  .project-desc { font-size: 14px; line-height: 1.7; color: rgba(255,255,255,0.55); max-width: 520px; }
+  .project-bullets { margin-top: 1.25rem; display: flex; flex-direction: column; gap: 0.5rem; }
+  .project-bullet { font-size: 13px; line-height: 1.5; color: rgba(255,255,255,0.5); display: flex; gap: 0.75rem; align-items: baseline; }
+  .project-bullet::before { content: '→'; color: var(--rust); flex-shrink: 0; font-size: 11px; }
+  .project-skills { margin-top: 2rem; display: flex; gap: 0.5rem; flex-wrap: wrap; }
+  .skill-pill { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.1em; border: 1px solid rgba(255,255,255,0.15); padding: 0.3rem 0.75rem; color: rgba(255,255,255,0.45); }
+
+  #skills { border-top: 1px solid var(--line); }
+  .skills-layout { display: grid; grid-template-columns: 1fr 2fr; gap: 6rem; }
+  .skills-intro { font-size: 15px; line-height: 1.75; color: var(--mid); }
+  .skills-groups { display: flex; flex-direction: column; gap: 0; border: 1px solid var(--line); }
+  .skill-group { padding: 1.75rem 2rem; border-bottom: 1px solid var(--line); display: grid; grid-template-columns: 200px 1fr; gap: 2rem; align-items: start; }
+  .skill-group:last-child { border-bottom: none; }
+  .skill-group-name { font-size: 13px; font-weight: 700; letter-spacing: 0.04em; }
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .skill-tag { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.08em; border: 1px solid var(--line); padding: 0.3rem 0.75rem; color: var(--mid); transition: all 0.15s; }
+  .skill-tag:hover { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+
+  #experience { background: #f9f7f3; border-top: 1px solid var(--line); }
+  .timeline { margin-top: 4rem; display: flex; flex-direction: column; border-left: 2px solid var(--line); margin-left: 1rem; }
+  .timeline-item { padding: 0 0 3rem 3rem; position: relative; }
+  .timeline-item::before { content: ''; position: absolute; left: -6px; top: 6px; width: 10px; height: 10px; border-radius: 50%; background: var(--paper); border: 2px solid var(--ink); }
+  .timeline-item.active::before { background: var(--rust); border-color: var(--rust); }
+  .tl-period { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.12em; color: var(--mid); margin-bottom: 0.5rem; }
+  .tl-role { font-size: 17px; font-weight: 700; margin-bottom: 0.2rem; }
+  .tl-org { font-size: 13px; color: var(--rust); letter-spacing: 0.06em; margin-bottom: 1rem; }
+  .tl-desc { font-size: 14px; line-height: 1.7; color: var(--mid); max-width: 600px; }
+
+  #credentials { border-top: 1px solid var(--line); }
+  .creds-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line); margin-top: 3rem; }
+  .cred-card { background: var(--paper); padding: 2rem; }
+  .cred-icon { font-size: 1.5rem; margin-bottom: 1rem; }
+  .cred-title { font-size: 14px; font-weight: 700; margin-bottom: 0.35rem; }
+  .cred-issuer { font-size: 12px; color: var(--mid); }
+  .cred-in-progress { display: inline-block; margin-top: 0.5rem; font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.1em; padding: 0.2rem 0.6rem; background: rgba(200,68,26,0.1); color: var(--rust); }
+
+  #contact { background: var(--accent-bg); color: var(--paper); border-top: 1px solid rgba(255,255,255,0.08); }
+  #contact .section-label { color: #c8a090; }
+  #contact .section-label::before { background: #c8a090; }
+  #contact h2 { color: var(--paper); }
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; }
+  .contact-intro { font-size: 16px; line-height: 1.75; color: rgba(255,255,255,0.55); }
+  .contact-links { display: flex; flex-direction: column; border: 1px solid rgba(255,255,255,0.1); }
+  .contact-link { display: flex; align-items: center; justify-content: space-between; padding: 1.5rem 2rem; border-bottom: 1px solid rgba(255,255,255,0.08); text-decoration: none; transition: background 0.2s; color: var(--paper); }
+  .contact-link:last-child { border-bottom: none; }
+  .contact-link:hover { background: rgba(255,255,255,0.05); }
+  .contact-link-label { font-size: 13px; letter-spacing: 0.06em; }
+  .contact-link-val { font-family: 'DM Mono', monospace; font-size: 12px; color: rgba(255,255,255,0.4); }
+  .contact-arrow { color: var(--rust); font-size: 1.2rem; }
+  .availability { margin-top: 2rem; padding: 1.5rem; border: 1px solid rgba(200,68,26,0.3); background: rgba(200,68,26,0.05); }
+  .avail-dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: #4caf7d; margin-right: 0.5rem; animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1}50%{opacity:0.4} }
+  .avail-text { font-size: 14px; color: rgba(255,255,255,0.7); }
+
+  footer { padding: 2rem 4rem; background: var(--ink); color: rgba(255,255,255,0.25); font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.1em; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255,255,255,0.06); }
+
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    #hero { grid-template-columns: 1fr; }
+    .hero-left { padding: 6rem 1.5rem 3rem; }
+    .hero-right { padding: 3rem 1.5rem; }
+    .hero-right::before { font-size: 15rem; }
+    section { padding: 4rem 1.5rem; }
+    .about-grid, .skills-layout, .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .projects-grid { grid-template-columns: 1fr; }
+    .project-card.featured { grid-column: span 1; }
+    .skill-group { grid-template-columns: 1fr; gap: 0.75rem; }
+    .creds-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">LAURIN MUNGAI / ENG</div>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#projects">Projects</a>
+    <a href="#experience">Experience</a>
+    <a href="#skills">Skills</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <!-- <a href="mailto:lmungaiventures@gmail.com" class="nav-cta">Get in Touch</a> -->
+  <a href="https://mail.google.com/mail/?view=cm&fs=1&to=lmungaiventures@gmail.com"
+   target="_blank"
+   class="nav-cta">
+   Get in Touch
+</a>
+</nav>
+
+<section id="hero">
+  <div class="hero-left">
+    <div class="hero-tag">Field Operations Manager · Mechatronic Engineer · Technical Project Coordinator </div>
+    <h1>Systems<br>Designer.<br><em>Operations Lead.</em></h1>
+    <p class="hero-sub">
+      I lead teams, streamline operations, and build systems that keep projects moving.
+      With a background in engineering and hands-on operational leadership, I bridge technical thinking with real-world execution across fast-moving environments..
+    </p>
+    <div class="hero-actions">
+      <a href="#projects" class="btn-primary">View Projects</a>
+      <a href="#contact" class="btn-outline">Open to Work</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-stats">
+      <div class="stat">
+        <span class="stat-num">6+</span>
+        <span class="stat-label">Years experience</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">10</span>
+        <span class="stat-label">People led</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">KE·RW</span>
+        <span class="stat-label">Work authorisation</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">GMT+2</span>
+        <span class="stat-label">East Africa / CAT</span>
+      </div>
+    </div>
+    <p class="hero-location">📍 Kigali, Rwanda — Open to Global Remote</p>
+  </div>
+</section>
+
+<section id="about">
+  <div class="section-label">About</div>
+  <div class="about-grid">
+    <div>
+      <h2>Turning complexity into structured execution.</h2>
+    </div>
+    <div>
+      <div class="about-body">
+        <p>
+          I hold a <strong>BSc in Mechatronic Engineering from JKUAT (2022)</strong> a discipline built around designing, integrating, and optimising systems. That engineering mindset now shapes how I approach operations and programme management: bringing structure to complexity, aligning teams, and driving reliable execution across technical and operational environments.
+        </p>
+        <p>
+          Today I manage field activation teams of up to 20 people at <strong>Digital Creations Rwanda</strong>, overseeing brand campaigns for clients including Equity Bank and Illovo Sugar (ABF Group). Before that, I ran production workflows, led product launches, and managed procurement across food manufacturing and creative industries.
+        </p>
+        <p>
+          I built my own <strong>PM tooling from scratch in Excel</strong> — an employee task tracking system with automated dashboards — because I believe PMs should understand the systems they manage. I want to lead engineering teams where that combination of hands-on technical depth and operational ownership makes a real difference.
+        </p>
+      </div>
+      <div class="pillars">
+        <div class="pillar">
+          <div class="pillar-num">01</div>
+          <div>
+            <div class="pillar-title">Proven Team Leadership</div>
+            <div class="pillar-desc">Managed field teams of 18–20 in fast-moving activation environments. Coordinating people, timelines, client expectations, and daily performance reporting simultaneously.</div>
+          </div>
+        </div>
+        <div class="pillar">
+          <div class="pillar-num">02</div>
+          <div>
+            <div class="pillar-title">Engineering Systems Thinker</div>
+            <div class="pillar-desc">Mechatronics trains you to see end-to-end systems, inputs, outputs, failure modes & feedback loops. That is exactly how I approach operational problems and project design.</div>
+          </div>
+        </div>
+        <div class="pillar">
+          <div class="pillar-num">03</div>
+          <div>
+            <div class="pillar-title">East Africa Operator</div>
+            <div class="pillar-desc">I understand on-the-ground realities across Kenya and Rwanda: supply chains, market dynamics & stakeholder relationships that distributed global teams rarely have access to.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="section-label">Projects</div>
+  <h2>Selected Work</h2>
+  <div class="projects-grid">
+
+    <!-- FEATURED: Current Role -->
+    <div class="project-card featured">
+      <div class="project-year">April 2026 – Present <span class="project-tag">CURRENT ROLE</span></div>
+      <div class="project-title">Activations Manager — Field Team Leadership</div>
+      <div class="project-org">Digital Creations · Kigali, Rwanda</div>
+      <div class="project-desc">
+        Managing end-to-end sales and marketing activation projects for major brands across Rwanda. Leading field teams of 18–20 members, coordinating directly with client brands, and delivering daily performance intelligence back to stakeholders.
+      </div>
+      <div class="project-bullets">
+        <div class="project-bullet">Led field activation teams upto 20 members across national campaigns</div>
+        <div class="project-bullet">Brand activations for Equity Bank and Illovo Sugar (ABF Sugar Group)</div>
+        <div class="project-bullet">Liaison between client brand objectives and on-ground execution teams</div>
+        <div class="project-bullet">Daily and weekly performance reports: sales progress, field insights, operational updates</div>
+        <div class="project-bullet">Monitored task execution against activation plans, timelines, and KPIs</div>
+      </div>
+      <div class="project-skills">
+        <span class="skill-pill">Team Management</span>
+        <span class="skill-pill">Brand Activation</span>
+        <span class="skill-pill">Client Liaison</span>
+        <span class="skill-pill">Performance Reporting</span>
+        <span class="skill-pill">Field Operations</span>
+        <span class="skill-pill">Stakeholder Coordination</span>
+      </div>
+    </div>
+
+    <!-- Excel PM Tool -->
+    <div class="project-card">
+      <div class="project-year">2026 <span class="project-tag">PM TOOLING</span></div>
+      <div class="project-title">Employee Task Tracking System</div>
+      <div class="project-org">Self-Initiated · Excel / GAS</div>
+      <div class="project-desc">
+        Built a fully functional project management tool in Microsoft Excel, including automated dashboards, task assignment workflows, progress tracking, and status reporting, designed for team leads managing distributed workloads.
+      </div>
+      <div class="project-bullets">
+        <div class="project-bullet">Designed data model for task ownership, deadlines, status, and priority</div>
+        <div class="project-bullet">Built automated summary dashboards with conditional formatting and formulas</div>
+        <div class="project-bullet">Created reusable templates for daily team reporting cycles</div>
+        <div class="project-bullet">Debugged and iterated on logic to handle real team workflows</div>
+      </div>
+      <div class="project-skills">
+        <span class="skill-pill">Excel /Google App Script</span>
+        <span class="skill-pill">PM Tooling</span>
+        <span class="skill-pill">Dashboard Design</span>
+        <span class="skill-pill">Workflow Design</span>
+        <span class="skill-pill">Systems Thinking</span>
+      </div>
+    </div>
+
+    <!-- NurtureBot -->
+    <div class="project-card">
+      <div class="project-year">2021 – 2022 <span class="project-tag">FLAGSHIP</span></div>
+      <div class="project-title">NurtureBot — Autonomous Agricultural Robot</div>
+      <div class="project-org">Final Year Project · JKUAT, Kenya</div>
+      <div class="project-desc">
+        Designed and fabricated an autonomous robot for agricultural seedling propagation, managing the full project lifecycle from concept through to public exhibition at JKUAT Tech Expo 11.0.
+      </div>
+      <div class="project-bullets">
+        <div class="project-bullet">Full lifecycle: concept design → prototyping → procurement → testing → exhibition</div>
+        <div class="project-bullet">Integrated sensors, actuators, and embedded automation systems</div>
+        <div class="project-bullet">Managed component procurement for cost efficiency and on-time delivery</div>
+        <div class="project-bullet">Demonstrated under resource constraints at JKUAT Tech Expo 11.0</div>
+      </div>
+      <div class="project-skills">
+        <span class="skill-pill">Mechatronics</span>
+        <span class="skill-pill">PCB Design</span>
+        <span class="skill-pill">Sensor Integration</span>
+        <span class="skill-pill">Project Lifecycle</span>
+        <span class="skill-pill">Procurement</span>
+      </div>
+    </div>
+
+    <!-- Viungo Ventures -->
+    <div class="project-card">
+      <div class="project-year">March 2024 – April 2026</div>
+      <div class="project-title">Project Development Associate</div>
+      <div class="project-org">Viungo Ventures · Kenya</div>
+      <div class="project-desc">
+        Product and process development in food manufacturing: from workflow design and SOP creation through product launches and market-aligned production planning.
+      </div>
+      <div class="project-bullets">
+        <div class="project-bullet">Designed production workflows and SOPs for quality and safety compliance</div>
+        <div class="project-bullet">Developed and launched new products using process engineering techniques</div>
+        <div class="project-bullet">Coordinated procurement and production planning to hit operational targets</div>
+        <div class="project-bullet">Testing and evaluation cycles to reduce wastage and optimise resources</div>
+      </div>
+      <div class="project-skills">
+        <span class="skill-pill">Process Engineering</span>
+        <span class="skill-pill">Product Development</span>
+        <span class="skill-pill">SOP Development</span>
+        <span class="skill-pill">Procurement</span>
+      </div>
+    </div>
+
+    <!-- Kuza Africa -->
+    <div class="project-card">
+      <div class="project-year">Oct 2022 – Feb 2024</div>
+      <div class="project-title">Operations Associate</div>
+      <div class="project-org">Kuza Africa LTD · Kigali, Rwanda</div>
+      <div class="project-desc">
+        End-to-end production operations at a Creative Production Hub, timelines, quality standards, financial oversight, and multi-stakeholder project coordination.
+      </div>
+      <div class="project-bullets">
+        <div class="project-bullet">Budget tracking, expense management, and monthly financial reporting</div>
+        <div class="project-bullet">Multi-stakeholder project coordination with risk and contingency planning</div>
+        <div class="project-bullet">Process documentation to improve operational consistency</div>
+      </div>
+      <div class="project-skills">
+        <span class="skill-pill">Ops Management</span>
+        <span class="skill-pill">Budget Control</span>
+        <span class="skill-pill">Risk Management</span>
+        <span class="skill-pill">Reporting</span>
+      </div>
+    </div>
+
+    <!-- Inchcape -->
+    <div class="project-card">
+      <div class="project-year">Aug 2020 – Oct 2020</div>
+      <div class="project-title">Maintenance Engineer Technician</div>
+      <div class="project-org">Inchcape Kenya · BMW · Jaguar · Land Rover</div>
+      <div class="project-desc">
+        Preventive and corrective maintenance on luxury vehicles at a multinational dealership: mechanical and electronic diagnostics, BMW X5 engine overhaul, and client progress reporting.
+      </div>
+      <div class="project-bullets">
+        <div class="project-bullet">Brake systems, lubrication systems, engine overhaul (BMW X5)</div>
+        <div class="project-bullet">Electronic and mechanical fault diagnosis across BMW, Jaguar, Land Rover</div>
+        <div class="project-bullet">Client communication and technical progress reporting to high-value customers</div>
+      </div>
+      <div class="project-skills">
+        <span class="skill-pill">Automotive Diagnostics</span>
+        <span class="skill-pill">Preventive Maintenance</span>
+        <span class="skill-pill">Client Communication</span>
+        <span class="skill-pill">Technical Documentation</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section id="skills">
+  <div class="section-label">Skills</div>
+  <div class="skills-layout">
+    <div>
+      <h2>What I bring to a team</h2>
+      <p class="skills-intro" style="margin-top:1.5rem;">
+        Technical depth and operational breadth — from reading circuit schematics and fabricating robots, to leading field teams, building PM tools, and writing SOPs that actually get followed.
+      </p>
+    </div>
+    <div class="skills-groups">
+      <div class="skill-group">
+        <div class="skill-group-name">Management & Leadership</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Team Supervision </span>
+          <span class="skill-tag">Field Operations Management</span>
+          <span class="skill-tag">Performance Monitoring</span>
+          <span class="skill-tag">Client Liaison</span>
+          <span class="skill-tag">Stakeholder Coordination</span>
+          <span class="skill-tag">Daily & Weekly Reporting</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-name">Operations & PM</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Project Lifecycle Management</span>
+          <span class="skill-tag">SOP Development</span>
+          <span class="skill-tag">Budget Management</span>
+          <span class="skill-tag">Risk Management</span>
+          <span class="skill-tag">Procurement</span>
+          <span class="skill-tag">Process Documentation</span>
+          <span class="skill-tag">Quality Control</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-name">PM Tooling</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Excel (Advanced)</span>
+          <span class="skill-tag">Dashboard Design</span>
+          <span class="skill-tag">Task Tracking Systems</span>
+          <span class="skill-tag">Workflow Automation</span>
+          <span class="skill-tag">GAS / Formulas</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-name">Engineering</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Mechatronic Systems Design</span>
+          <span class="skill-tag">Automotive Diagnostics</span>
+          <span class="skill-tag">PCB Design & Fabrication</span>
+          <span class="skill-tag">Robot Design & Fabrication</span>
+          <span class="skill-tag">Electrical Troubleshooting</span>
+          <span class="skill-tag">Soldering & Repair</span>
+          <span class="skill-tag">Design For Manufacture</span>
+          <span class="skill-tag">Inventor</span>
+          <span class="skill-tag">Proteus</span>
+          <span class="skill-tag">KiCAD</span>
+          <span class="skill-tag">VS Code</span>
+          <span class="skill-tag">AutoCAD</span>
+          
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-name">Analysis & Strategy</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Systems Analysis</span>
+          <span class="skill-tag">Process Optimisation</span>
+          <span class="skill-tag">Data Analytics (R)</span>
+          <span class="skill-tag">Market Research</span>
+          <span class="skill-tag">Demand Forecasting</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-name">Languages</div>
+        <div class="skill-tags">
+          <span class="skill-tag">English — Native</span>
+          <span class="skill-tag">Swahili — Native</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="section-label">Experience</div>
+  <h2>Career Timeline</h2>
+  <div class="timeline">
+    <div class="timeline-item active">
+      <div class="tl-period">April 2026 – Present</div>
+      <div class="tl-role">Field Operations Manager</div>
+      <div class="tl-org">Digital Creations · Kigali, Rwanda</div>
+      <div class="tl-desc">Managing field activation teams of upto 20 people for brand campaigns including Equity Bank and Illovo Sugar. Daily performance reporting, client liaison, and end-to-end operational oversight.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="tl-period">March 2024 – April 2026</div>
+      <div class="tl-role">Project Development Associate</div>
+      <div class="tl-org">Viungo Ventures · Kenya</div>
+      <div class="tl-desc">Product and process development in food manufacturing. Workflow design, SOP creation, procurement coordination, and market-aligned production planning.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="tl-period">Oct 2022 – Feb 2024</div>
+      <div class="tl-role">Operations Associate</div>
+      <div class="tl-org">Kuza Africa LTD · Kigali, Rwanda</div>
+      <div class="tl-desc">End-to-end production operations, budget management, multi-stakeholder coordination, and process documentation at a Creative Production Hub.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="tl-period">Sept 2016 – Jun 2022</div>
+      <div class="tl-role">BSc Mechatronic Engineering</div>
+      <div class="tl-org">Jomo Kenyatta University of Agriculture and Technology</div>
+      <div class="tl-desc">Engineering design & fabrication, project management, human-centred design. Final year project: NurtureBot autonomous agricultural robot, exhibited at JKUAT Tech Expo 11.0.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="tl-period">Aug 2020 – Oct 2020</div>
+      <div class="tl-role">Maintenance Engineer Technician</div>
+      <div class="tl-org">Inchcape Kenya · BMW · Jaguar · Land Rover</div>
+      <div class="tl-desc">Preventive and corrective maintenance, electronic fault detection, and client reporting for a multinational luxury vehicle dealership.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="tl-period">Jul 2019 – Sept 2019</div>
+      <div class="tl-role">Electronics Repair Intern</div>
+      <div class="tl-org">Credible Sounds · Kenya</div>
+      <div class="tl-desc">Diagnostics, soldering, and preventive maintenance on professional audio electronics and mixing consoles.</div>
+    </div>
+  </div>
+</section>
+
+<section id="credentials">
+  <div class="section-label">Credentials</div>
+  <h2>Certifications & Training</h2>
+  <div class="creds-grid">
+    <div class="cred-card">
+      <div class="cred-icon">🤖</div>
+      <div class="cred-title">Robot Fabrication Certification</div>
+      <div class="cred-issuer">JKUAT</div>
+    </div>
+    <div class="cred-card">
+      <div class="cred-icon">📊</div>
+      <div class="cred-title">Introduction to Data Science</div>
+      <div class="cred-issuer">Cisco Networking Academy</div>
+    </div>
+    <div class="cred-card">
+      <div class="cred-icon">📈</div>
+      <div class="cred-title">Data Analytics with R</div>
+      <div class="cred-issuer">Digital Skills Training</div>
+    </div>
+    <div class="cred-card">
+      <div class="cred-icon">🍽️</div>
+      <div class="cred-title">Food Production & Standards</div>
+      <div class="cred-issuer">KIRDI Kenya</div>
+    </div>
+    <div class="cred-card">
+      <div class="cred-icon">⚡</div>
+      <div class="cred-title">Steam Engineering & Energy Conservation</div>
+      <div class="cred-issuer">Training Programme</div>
+    </div>
+    <div class="cred-card">
+      <div class="cred-icon">🛡️</div>
+      <div class="cred-title">Covid PPE Fabrication</div>
+      <div class="cred-issuer">GearBox Kenya</div>
+    </div>
+    <div class="cred-card">
+      <div class="cred-icon">🌍</div>
+      <div class="cred-title">Jasiri Talent Investor Programme</div>
+      <div class="cred-issuer">Entrepreneurship</div>
+    </div>
+    <div class="cred-card">
+      <div class="cred-icon">🏗️</div>
+      <div class="cred-title">Student Member</div>
+      <div class="cred-issuer">Institute of Engineers of Kenya (IEK)</div>
+    </div>
+    <div class="cred-card">
+      <div class="cred-icon">📋</div>
+      <div class="cred-title">Google Project Management Certificate</div>
+      <div class="cred-issuer">Coursera</div>
+      <div><span class="cred-in-progress">IN PROGRESS</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="section-label">Contact</div>
+  <div class="contact-grid">
+    <div>
+      <h2>Let's build something that works.</h2>
+      <p class="contact-intro" style="margin-top:1.5rem;">
+        I am actively seeking remote Programme Management, Operations, or Technical Coordinator roles — globally or with Africa-focused organisations. Available for the right opportunity. UTC+2 timezone.
+      </p>
+      <div class="availability" style="margin-top:2rem;">
+        <span class="avail-dot"></span>
+        <span class="avail-text">Open to remote opportunities · GMT+2 · KE & RW work authorisation</span>
+      </div>
+    </div>
+    <div>
+      <div class="contact-links">
+        <a href="mailto:lmungaiventures@gmail.com" class="contact-link">
+          <div>
+            <div class="contact-link-label">Email</div>
+            <div class="contact-link-val">lmungaiventures@gmail.com</div>
+          </div>
+          <span class="contact-arrow">→</span>
+        </a>
+        <!-- <a href="tel:+250791944628" class="contact-link">
+          <div>
+            <div class="contact-link-label">Phone (Rwanda)</div>
+            <div class="contact-link-val">+250 791 944 628</div>
+          </div>
+          <span class="contact-arrow">→</span> -->
+        <!-- </a>
+        <a href="tel:+254727396641" class="contact-link">
+          <div>
+            <div class="contact-link-label">Phone (Kenya)</div>
+            <div class="contact-link-val">+254 727 396 641</div>
+          </div>
+          <span class="contact-arrow">→</span> 
+        </a>
+      -->
+        <a href="https://linkedin.com/in/laurin-mungai" class="contact-link" target="_blank">
+          <div>
+            <div class="contact-link-label">LinkedIn</div>
+            <div class="contact-link-val">linkedin.com/in/laurin-mungai</div>
+          </div>
+          <span class="contact-arrow">→</span>
+        </a>
+        <a href="https://github.com/MungaiL" class="contact-link" target="_blank">
+          <div>
+            <div class="contact-link-label">GitHub</div>
+            <div class="contact-link-val">github.com/MungaiL</div>
+          </div>
+          <span class="contact-arrow">→</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span>© 2026 Laurin Mungai — Kigali, Rwanda</span>
+  <span>BSc Mechatronic Engineering · JKUAT 2022</span>
+</footer>
+
+</body>
+</html>
