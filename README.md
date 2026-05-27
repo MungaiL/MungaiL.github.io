@@ -1,2 +1,12 @@
 # MungaiL.github.io
-Operations &amp; Project Management portfolio showcasing systems thinking, workflow design, and execution leadership.
+# Laurin Mungai Portfolio
+
+Personal portfolio showcasing operations leadership, technical projects, systems thinking, and programme management work.
+
+Built with:
+- HTML
+- CSS
+- GitHub Pages
+
+## Live Site
+[MungaiL.github.io]
